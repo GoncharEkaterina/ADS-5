@@ -25,31 +25,36 @@ int count(int i, int j, char sum) {
 
 std::string infx2pstfx(std::string inf) {
   TStack <char, 100> stack;
-    int vari, i = 0;
+    int vari;
     std::string str;
-  while (i < (inf.size)) {
-      vari = priority(inf[i]);
-    if (vari == 4) {
-      str.push_back(inf[i] + ' ');
-    } else {
-      if (((vari == 0) || (isEmpty()))) {
-        stack.push(inf[i]);
-      } else if ((vari > priority(stack.get()))) {
-          stack.push(inf[i]);
-      } else if ((vari == 1) && (stack.get != '(')) {
-          str.push_back(stack.get() + ' ');
-          stack.pop();
-      } else if (inf[i] != ' ') {
-          int perem = priority(stack.get());
-          while ((perem >= priority(inf[i])) && (!stack.isEmpty())) {
-            str.push_back(stack.get());
-            str.push_back(' ');
-            stack.pop();
-          }
-          stack.push(inf[i]);
-      }
-      i++;
-  }
+  for (int i = 0; i < inf.size(); i++) {
+        vari = priority(inf[i]);
+        if (vari == 4) {
+            temp.push_back(inf[i]);
+            temp.push_back(' ');
+        } else {
+            if (((vari == 0) || stack.isEmpty())) {
+                stack.push(inf[i]);
+            } else if ((vari > priority(stack.get()))) {
+                stack.push(inf[i]);
+            } else if (vari == 1) {
+                while (stack.get() != '(') {
+                    tmp.push_back(stack.get());
+                    tmp.push_back(' ');
+                    stack.pop();
+                }
+                stack.pop();
+            } else if (inf[i] != ' ') {
+                int vrp = priority(stack.get());
+                while ((vrp >= priority(inf[i])) && (!stack.isEmpty())) {
+                    temp.push_back(stack.get());
+                    temp.push_back(' ');
+                    stack.pop();
+                }
+                stack.push(inf[i]);
+            }
+        }
+    }
   while (!stack.isEmpty()) {
         str.push_back(stack.get());
         str.push_back(' ');
