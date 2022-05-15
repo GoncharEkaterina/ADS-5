@@ -39,8 +39,8 @@ std::string infx2pstfx(std::string inf) {
                 stack.push(inf[i]);
             } else if (vari == 1) {
                 while (stack.get() != '(') {
-                    tmp.push_back(stack.get());
-                    tmp.push_back(' ');
+                    temp.push_back(stack.get());
+                    temp.push_back(' ');
                     stack.pop();
                 }
                 stack.pop();
@@ -79,5 +79,6 @@ int eval(std::string prior) {
       } else if (prior[i] != ' ' && priority(prior[i]) == 4) {
           stack.push(prior[i] - '0');
       }
+  }
   return stack.get();
 }
