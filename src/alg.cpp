@@ -30,8 +30,8 @@ std::string infx2pstfx(std::string inf) {
   for (int i = 0; i < inf.size(); i++) {
         vari = priority(inf[i]);
         if (vari == 4) {
-            temp.push_back(inf[i]);
-            temp.push_back(' ');
+            str.push_back(inf[i]);
+            str.push_back(' ');
         } else {
             if (((vari == 0) || stack.isEmpty())) {
                 stack.push(inf[i]);
@@ -39,16 +39,16 @@ std::string infx2pstfx(std::string inf) {
                 stack.push(inf[i]);
             } else if (vari == 1) {
                 while (stack.get() != '(') {
-                    temp.push_back(stack.get());
-                    temp.push_back(' ');
+                    str.push_back(stack.get());
+                    str.push_back(' ');
                     stack.pop();
                 }
                 stack.pop();
             } else if (inf[i] != ' ') {
                 int vrp = priority(stack.get());
                 while ((vrp >= priority(inf[i])) && (!stack.isEmpty())) {
-                    temp.push_back(stack.get());
-                    temp.push_back(' ');
+                    str.push_back(stack.get());
+                    str.push_back(' ');
                     stack.pop();
                 }
                 stack.push(inf[i]);
