@@ -4,11 +4,11 @@
 #include "tstack.h"
 
 std::string infx2pstfx(std::string inf) {
-    TStack <char, 100> stack;
-   int vari, i = 0;
-   std::string str;
+  TStack <char, 100> stack;
+  int vari, i = 0;
+  std::string str;
   while (i < inf.size) {
-     vari = priority(inf[i]);
+      vari = priority(inf[i]);
     if (vari == 4) {
       str.push_back(inf[i] + ' ');
     } else {
