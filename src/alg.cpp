@@ -3,10 +3,30 @@
 #include <map>
 #include "tstack.h"
 
+int priority(char alt) {
+    switch (alt) {
+    case '(': return 0;
+    case ')': return 1;
+    case '-': case '+': return 2;
+    case '*': case '/': return 3;
+    default: return 4;
+    }
+}
+
+int count(int i, int j, char sum) {
+    switch (sum) {
+    case '-': return i - j;
+    case '+': return i + j;
+    case '*': return i * j;
+    case '/': return i / j;
+    default: return 0;
+    }
+}
+
 std::string infx2pstfx(std::string inf) {
   TStack <char, 100> stack;
-  int vari, i = 0;
-  std::string str;
+    int vari, i = 0;
+    std::string str;
   while (i < inf.size) {
       vari = priority(inf[i]);
     if (vari == 4) {
@@ -54,26 +74,5 @@ int eval(std::string pref) {
       } else if (prior[i] != ' ' && priority(prior[i]) == 4) {
           stack.push(prior[i] - '0');
       }
-  }
   return stack.get();
-}
-
-int priority(char alt) {
-    switch (alt) {
-    case '(': return 0;
-    case ')': return 1;
-    case '-': case '+': return 2;
-    case '*': case '/': return 3;
-    default: return 4;
-    }
-}
-
-int count(int i, int j, char sum) {
-    switch (sum) {
-    case '-': return i - j;
-    case '+': return i + j;
-    case '*': return i * j;
-    case '/': return i / j;
-    default: return 0;
-    }
 }
